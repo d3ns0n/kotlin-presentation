@@ -114,7 +114,8 @@
             </section>
 
             <section>
-                <h2><code>Unit</code> return type can be omitted</h2>
+                <h2>Return types</h2>
+                <p><code>Unit</code> return type can be omitted</p>
                 <pre><code class="kotlin" data-trim>
                     fun main(): Unit {
                         println(“Hello World”)
@@ -170,16 +171,16 @@
             </section>
 
             <section>
-                    <h2>Creating new instances</h2>
-                    <p>No <code>new</code> keyword</p>
-                    <pre><code class="java" data-trim>
+                <h2>Creating new instances</h2>
+                <p>Java</p>
+                <pre><code class="java" data-trim>
                         Person somePerson = new Person("Dennis");
                     </code></pre>
-                    <p>Kotlin</p>
-                    <pre><code class="kotlin" data-trim>
+                <p>Kotlin (no <code>new</code> keyword)</p>
+                <pre><code class="kotlin" data-trim>
                         val somePerson = Person("Dennis")
                     </code></pre>
-                </section>
+            </section>
 
             <section>
                 <h2>Named arguments</h2>
@@ -188,6 +189,7 @@
 
                     val admin = User(username = "admin", password = "12345")
                 </code></pre>
+                <p>order doesn't matter</p>
                 <pre><code class="kotlin" data-trim>
                     val user = User(password = "54321", username = "user")
                 </code></pre>
@@ -208,13 +210,13 @@
             <section>
                 <h2>Single-expression functions</h2>
                 <pre><code class="kotlin" data-trim>
-                    fun theAnswer() = 42
-                </code></pre>
-                <p>is equivalent to</p>
-                <pre><code class="kotlin" data-trim>
                     fun theAnswer(): Int {
                         return 42
                     }
+                </code></pre>
+                <p>is equivalent to</p>
+                <pre><code class="kotlin" data-trim>
+                    fun theAnswer() = 42
                 </code></pre>
             </section>
 
@@ -281,7 +283,7 @@
 					println("My name is $name")
 				</code></pre>
                 <pre><code class="shell" data-trim>
-					My name is Dennis
+					$ My name is Dennis
 				</code></pre>
             </section>
 
@@ -317,7 +319,12 @@
                     )
 
                     val (username, password) = User("admin", "12345")
-				</code></pre>
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Destructuring Declarations</h2>
+                <p>very handy in maps</p>
                 <pre><code class="kotlin" data-trim>
                     for ((key, value) in map) {
                         println("Key: $key, value: $value")
@@ -345,9 +352,9 @@
                 <p><code>when-expressions</code></p>
                 <pre><code class="kotlin" data-trim>
                     when (x) {
-                        is Int -> println(x + 1)
-                        is String -> println(x.length + 1)
-                        is IntArray -> println(x.sum())
+                        is Int -> println(x + 1) // x is Int
+                        is String -> println(x.length + 1) // x is String
+                        is IntArray -> println(x.sum()) // x is IntArray
                     }
 				</code></pre>
             </section>
@@ -458,30 +465,12 @@
             </section>
 
             <section>
-                <h2>Coroutines</h2>
-                <p>lightweight threads (no context switching)</p>
-                <pre><code class="kotlin" data-trim>
-                    suspend fun main() = coroutineScope {
-                        for(i in 0 until 10) {
-                            launch {
-                                delay(1000L - i * 10)
-                                print("$i ")
-                            }
-                        }
-                    }
-				</code></pre>
-                <pre><code class="shell" data-trim>
-                    9 8 7 6 5 4 3 2 1 0 
-                </code></pre>
-                <aside class="notes">executes in &lt; 2s</aside>
-            </section>
-
-            <section>
                 <h2>More awesome features</h2>
                 <ul>
+                    <li>Coroutines</li>
                     <li>Kotlin Native</li>
                     <li>Scope functions</li>
-                    <li>Infix operator</li>
+                    <li>Infix notation</li>
                     <li>Ability to create DSLs</li>
                     <li>Contracts</li>
                     <li>...</li>
