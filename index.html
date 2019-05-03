@@ -131,13 +131,13 @@
             <section>
                 <h2>Type inference</h2>
                 <pre><code class="kotlin" data-trim>
-                    val a: Int = 3
+                    val a = 3
                     val b: Int
                     b = 5
                 </code></pre>
                 <p>is equivalent to</p>
                 <pre><code class="kotlin" data-trim>
-                    val a = 3
+                    val a: Int = 3 // type Int gets inferred
                     val b: Int
                     b = 5
                 </code></pre>
@@ -170,14 +170,38 @@
             </section>
 
             <section>
-                <h2>Creating new instances</h2>
-                <p>No <code>new</code> keyword</p>
-                <pre><code class="java" data-trim>
-                    Person somePerson = new Person("Dennis");
-                </code></pre>
-                <p>Kotlin</p>
+                    <h2>Creating new instances</h2>
+                    <p>No <code>new</code> keyword</p>
+                    <pre><code class="java" data-trim>
+                        Person somePerson = new Person("Dennis");
+                    </code></pre>
+                    <p>Kotlin</p>
+                    <pre><code class="kotlin" data-trim>
+                        val somePerson = Person("Dennis")
+                    </code></pre>
+                </section>
+
+            <section>
+                <h2>Named arguments</h2>
                 <pre><code class="kotlin" data-trim>
-                    val somePerson = Person("Dennis")
+                    class User(val username: String, val password: String)
+
+                    val admin = User(username = "admin", password = "12345")
+                </code></pre>
+                <pre><code class="kotlin" data-trim>
+                    val user = User(password = "54321", username = "user")
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Default arguments</h2>
+                <pre><code class="kotlin" data-trim>
+                    class User(
+                        val username: String,
+                        val password: String = "not-so-secure-password"
+                    )
+
+                    val admin = User(username = "admin")
                 </code></pre>
             </section>
 
@@ -275,36 +299,24 @@
             <section>
                 <h2>Data classes</h2>
                 <pre><code class="kotlin" data-trim>
-                    data class Credentials(
+                    data class User(
                         val username: String,
                         val password: String
                     )
                     
-                    val adminCredentials = Credentials("admin", "12345")
-				</code></pre>
-                <pre><code class="kotlin" data-trim>
-                    val adminCredentials = Credentials(
-                        username = "admin",
-                        password = "12345"
-                    )
-				</code></pre>
-                <pre><code class="kotlin" data-trim>
-                    val adminCredentials = Credentials(
-                        password = "12345",
-                        username = "admin"
-                    )
+                    val admin = User("admin", "12345")
 				</code></pre>
             </section>
 
             <section>
                 <h2>Destructuring Declarations</h2>
                 <pre><code class="kotlin" data-trim>
-                    data class Credentials(
+                    data class User(
                         val username: String,
                         val password: String
                     )
 
-                    val (username, password) = Credentials("admin", "12345")
+                    val (username, password) = User("admin", "12345")
 				</code></pre>
                 <pre><code class="kotlin" data-trim>
                     for ((key, value) in map) {
