@@ -65,14 +65,14 @@
             <section>
                 <h2>Java Interoperability</h2>
                 <pre><code class="kotlin" data-trim>
-					import java.util.Calendar
+                    import java.util.Calendar
 
-					fun calendarDemo() {
-						val calendar = Calendar.getInstance()
-						if (calendar.firstDayOfWeek == Calendar.SUNDAY) {
-							calendar.firstDayOfWeek = Calendar.MONDAY
-						}
-					}
+                    fun calendarDemo() {
+                        val calendar = Calendar.getInstance()
+                        if (calendar.firstDayOfWeek == Calendar.SUNDAY) {
+                            calendar.firstDayOfWeek = Calendar.MONDAY
+                        }
+                    }
 				</code></pre>
             </section>
 
@@ -88,18 +88,110 @@
                 <h2>Less verbose</h2>
                 <p>Java</p>
                 <pre><code class="java" data-trim>
-					public class HelloWorld {
-						public static void main(String[] args) {
-							System.out.println(“Hello World!”);
-						}
-					}
+                    public class HelloWorld {
+                        public static void main(String[] args) {
+                            System.out.println(“Hello World!”);
+                        }
+                    }
 				</code></pre>
                 <p>Kotlin</p>
                 <pre><code class="kotlin" data-trim>
-					fun main() {
-						println(“Hello World”)
-					}
+                    fun main() {
+                        println(“Hello World”)
+                    }
 				</code></pre>
+            </section>
+
+            <section>
+                <h2>Semicolons are optional</h2>
+                <pre><code class="kotlin" data-trim>
+                    println(“Hello World”);
+                </code></pre>
+                <p>is equivalent to</p>
+                <pre><code class="kotlin" data-trim>
+                    println(“Hello World”)
+                </code></pre>
+            </section>
+
+            <section>
+                <h2><code>Unit</code> return type can be omitted</h2>
+                <pre><code class="kotlin" data-trim>
+                    fun main(): Unit {
+                        println(“Hello World”)
+                    }
+                </code></pre>
+                <p>is equivalent to</p>
+                <pre><code class="kotlin" data-trim>
+                    fun main() {
+                        println(“Hello World”)
+                    }
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Type inference</h2>
+                <pre><code class="kotlin" data-trim>
+                    val a: Int = 3
+                    val b: Int
+                    b = 5
+                </code></pre>
+                <p>is equivalent to</p>
+                <pre><code class="kotlin" data-trim>
+                    val a = 3
+                    val b: Int
+                    b = 5
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Visibility Modifiers</h2>
+                <ul>
+                    <li><code>private</code></li>
+                    <li><code>protected</code></li>
+                    <li><code>internal</code></li>
+                    <li><code>public</code> (default)</li>
+                </ul>
+                <pre><code class="kotlin" data-trim>
+                    private val a = 3
+                    val b = 5 // public by default
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Accessing properties</h2>
+                <p>Java</p>
+                <pre><code class="Java" data-trim>
+                    String name = somePerson.getName();
+                </code></pre>
+                <p>Kotlin</p>
+                <pre><code class="kotlin" data-trim>
+                    val name = somePerson.name
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Creating new instances</h2>
+                <p>No <code>new</code> keyword</p>
+                <pre><code class="java" data-trim>
+                    Person somePerson = new Person("Dennis");
+                </code></pre>
+                <p>Kotlin</p>
+                <pre><code class="kotlin" data-trim>
+                    val somePerson = Person("Dennis")
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Single-expression functions</h2>
+                <pre><code class="kotlin" data-trim>
+                    fun theAnswer() = 42
+                </code></pre>
+                <p>is equivalent to</p>
+                <pre><code class="kotlin" data-trim>
+                    fun theAnswer(): Int {
+                        return 42
+                    }
+                </code></pre>
             </section>
 
             <section>
@@ -183,42 +275,41 @@
             <section>
                 <h2>Data classes</h2>
                 <pre><code class="kotlin" data-trim>
-					data class Credentials(
-						val username: String,
-						val password: String
-					)
-					
-					val adminCredentials = Credentials("admin", "12345")
+                    data class Credentials(
+                        val username: String,
+                        val password: String
+                    )
+                    
+                    val adminCredentials = Credentials("admin", "12345")
 				</code></pre>
                 <pre><code class="kotlin" data-trim>
-					val adminCredentials = Credentials(
-						username = "admin",
-						password = "12345"
-					)
+                    val adminCredentials = Credentials(
+                        username = "admin",
+                        password = "12345"
+                    )
 				</code></pre>
                 <pre><code class="kotlin" data-trim>
-					val adminCredentials = Credentials(
-						password = "12345",
-						username = "admin"
-					)
+                    val adminCredentials = Credentials(
+                        password = "12345",
+                        username = "admin"
+                    )
 				</code></pre>
             </section>
 
             <section>
                 <h2>Destructuring Declarations</h2>
                 <pre><code class="kotlin" data-trim>
-					data class Credentials(
-						val username: String,
-						val password: String
-					)
+                    data class Credentials(
+                        val username: String,
+                        val password: String
+                    )
 
-					val (username, password) = Credentials("admin", "12345")
-					
+                    val (username, password) = Credentials("admin", "12345")
 				</code></pre>
                 <pre><code class="kotlin" data-trim>
-					for ((key, value) in map) {
-						println("Key: $key, value: $value")
-					}
+                    for ((key, value) in map) {
+                        println("Key: $key, value: $value")
+                    }
 				</code></pre>
             </section>
 
@@ -226,14 +317,14 @@
                 <h2>Smart Casts</h2>
                 <p><code>is</code> check</p>
                 <pre><code class="kotlin" data-trim>
-					if (x is String) {
-						println(x.length) // x is automatically cast to String
-					}
+                    if (x is String) {
+                        println(x.length) // x is automatically cast to String
+                    }
 				</code></pre>
                 <p>negative <code>is</code> check</p>
                 <pre><code class="kotlin" data-trim>
-					if (x !is String) return
-					println(x.length) // x is automatically cast to String
+                    if (x !is String) return
+                    println(x.length) // x is automatically cast to String
 				</code></pre>
             </section>
 
@@ -241,11 +332,11 @@
                 <h2>Smart Casts</h2>
                 <p><code>when-expressions</code></p>
                 <pre><code class="kotlin" data-trim>
-					when (x) {
-						is Int -> println(x + 1)
-						is String -> println(x.length + 1)
-						is IntArray -> println(x.sum())
-					}
+                    when (x) {
+                        is Int -> println(x + 1)
+                        is String -> println(x.length + 1)
+                        is IntArray -> println(x.sum())
+                    }
 				</code></pre>
             </section>
 
@@ -253,13 +344,13 @@
                 <h2>Collections</h2>
                 <p>Immutable</p>
                 <pre><code class="kotlin" data-trim>
-					val x = listOf(a, b, c)
-					val y = setOf(a, b, c)
-					val z = mapOf(
-						Pair("a", a),
-						Pair("b", b), 
-						Pair("c", c)
-					)
+                    val x = listOf(a, b, c)
+                    val y = setOf(a, b, c)
+                    val z = mapOf(
+                        Pair("a", a),
+                        Pair("b", b), 
+                        Pair("c", c)
+                    )
 				</code></pre>
             </section>
 
@@ -267,13 +358,13 @@
                 <h2>Collections</h2>
                 <p>Mutable</p>
                 <pre><code class="kotlin" data-trim>
-					val x = mutableListOf(a, b, c)
-					val y = mutableSetOf(a, b, c)
-					val z = mutableMapOf(
-						Pair("a", a),
-						Pair("b", b), 
-						Pair("c", c)
-					)
+                    val x = mutableListOf(a, b, c)
+                    val y = mutableSetOf(a, b, c)
+                    val z = mutableMapOf(
+                        Pair("a", a),
+                        Pair("b", b), 
+                        Pair("c", c)
+                    )
 				</code></pre>
             </section>
 
@@ -281,15 +372,15 @@
                 <h2>Ranges</h2>
                 <p>ascending</p>
                 <pre><code class="kotlin" data-trim>
-					for(i in 1..4) {
-						println("Current Value is $i")
-					}
+                    for(i in 1..4) {
+                        println("Current Value is $i")
+                    }
                 </code></pre>
                 <p>descending</p>
                 <pre><code class="kotlin" data-trim>
-					for(i in 4 downTo 1) {
-						println("Current Value is $i")
-					}
+                    for(i in 4 downTo 1) {
+                        println("Current Value is $i")
+                    }
 				</code></pre>
             </section>
 
@@ -297,15 +388,15 @@
                 <h2>Ranges with step</h2>
                 <p>ascending</p>
                 <pre><code class="kotlin" data-trim>
-					for(i in 1..4 step 2) {
-						println("Current Value is $i")
-					}
+                    for(i in 1..4 step 2) {
+                        println("Current Value is $i")
+                    }
                 </code></pre>
                 <p>descending</p>
                 <pre><code class="kotlin" data-trim>
-					for(i in 4 downTo 1 step 2) {
-						println("Current Value is $i")
-					}
+                    for(i in 4 downTo 1 step 2) {
+                        println("Current Value is $i")
+                    }
 				</code></pre>
             </section>
 
@@ -318,7 +409,7 @@
             </section>
 
             <section>
-                <h2>Extension Functions</h2>
+                <h2>Util classes in Java</h2>
                 <pre><code class="java" data-trim>
                     public class CollectionUtil {
                         public static void swap(
@@ -342,15 +433,15 @@
                 <h2>Extension Functions</h2>
                 <p>Replacement of Java Util function</p>
                 <pre><code class="kotlin" data-trim>
-					fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
-						val tmp = this[index1]
-						this[index1] = this[index2]
-						this[index2] = tmp
-					}
+                    fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
+                        val tmp = this[index1]
+                        this[index1] = this[index2]
+                        this[index2] = tmp
+                    }
                 </code></pre>
                 <pre><code class="java" data-trim>
-					val list = mutableListOf(1, 2, 3)
-					list.swap(0, 2)
+                    val list = mutableListOf(1, 2, 3)
+                    list.swap(0, 2)
 				</code></pre>
             </section>
 
