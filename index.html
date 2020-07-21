@@ -1,537 +1,519 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Kotlin - From a Java Developer's perspective</title>
+  <title>Kotlin - From a Java Developer's perspective</title>
 
-    <meta name="description" content="An introduction to Kotlin from a Java developer's perspective">
-    <meta name="author" content="Dennis Lotz">
+  <meta name="description" content="An introduction to Kotlin from a Java developer's perspective">
+  <meta name="author" content="Dennis Lotz">
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="css/theme/kotlin.css" id="theme">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/kotlin.css" id="theme">
-
-    <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/darcula.css">
-
-    <!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-    <![endif]-->
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/darcula.css" id="highlight-theme">
 </head>
 
 <body>
+  <div class="reveal">
 
-    <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>Kotlin</h1>
+        <h3>From a Java Developer's perspective</h3>
+      </section>
 
-        <div class="slides">
-            <section>
-                <h1>Kotlin</h1>
-                <h3>From a Java Developer's perspective</h3>
-            </section>
+      <section>
+        <h2>What is Kotlin?</h2>
+        <ul>
+          <li>cross plattform</li>
+          <li>statically typed with type inference</li>
+          <li>concise</li>
+          <li>compiles to JVM byte code</li>
+        </ul>
+      </section>
 
-            <section>
-                <h2>What is Kotlin?</h2>
-                <ul>
-                    <li>cross plattform</li>
-                    <li>statically typed</li>
-                    <li>more concise than Java</li>
-                    <li>compiles to JVM byte code</li>
-                </ul>
-            </section>
 
-            <section>
-                <h2>What is Kotlin?</h2>
-                <figure>
-                    <img class="plain small" alt="Fastest growing languages on GitHub in 2018" src="images/language-growth-github-2018.png">
-                    <figcaption>-- Fastest growing languages on GitHub in 2018</figcaption>
-                </figure>
-            </section>
+      <section>
+        <h2>Java Interoperability</h2>
+        <q cite="https://kotlinlang.org/docs/reference/java-interop.html#calling-java-code-from-kotlin">
+          Kotlin is designed with Java Interoperability in mind. Existing Java code can be called from Kotlin in a
+          natural way, and Kotlin code can be used from Java rather smoothly as well.
+        </q>
+        <p class="text-right">kotlinlang.org</p>
+      </section>
 
-            <section>
-                <h2>Java Interoperability</h2>
-                <q cite="https://kotlinlang.org/docs/reference/java-interop.html#calling-java-code-from-kotlin">
-                    Kotlin is designed with Java Interoperability in mind. Existing Java code can be called from Kotlin in a natural way, and Kotlin code can be used from Java rather smoothly as well.
-				</q>
-                <p class="text-right">kotlinlang.org</p>
-            </section>
+      <section>
+        <h2>Java Interoperability</h2>
+        <pre><code class="kotlin" data-trim>
+            import java.util.Calendar
+            
+            fun calendarDemo() {
+                val calendar = Calendar.getInstance()
+                if (calendar.firstDayOfWeek == Calendar.SUNDAY) {
+                    calendar.firstDayOfWeek = Calendar.MONDAY
+                }
+            }
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Java Interoperability</h2>
-                <pre><code class="kotlin" data-trim>
-                    import java.util.Calendar
+      <section>
+        <h2>Less verbose</h2>
+        <q cite="https://developer.android.com/kotlin/">
+          Kotlin's modern language features allow you to focus on expressing your ideas and write less boilerplate code.
+          Less code written also means less code to test and maintain.
+        </q>
+        <p class="text-right">developer.android.com</p>
+      </section>
 
-                    fun calendarDemo() {
-                        val calendar = Calendar.getInstance()
-                        if (calendar.firstDayOfWeek == Calendar.SUNDAY) {
-                            calendar.firstDayOfWeek = Calendar.MONDAY
-                        }
-                    }
-				</code></pre>
-            </section>
+      <section>
+        <h2>Less verbose</h2>
+        <p>Java</p>
+        <pre><code class="java" data-trim>
+            public class HelloWorld {
+                public static void main(String[] args) {
+                    System.out.println(“Hello World!”);
+                }
+            }
+        </code></pre>
+        <p>Kotlin</p>
+        <pre><code class="kotlin" data-trim>
+            fun main() {
+                println(“Hello World”)
+            }
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Less verbose</h2>
-                <q cite="https://developer.android.com/kotlin/">
-                	Kotlin's modern language features allow you to focus on expressing your ideas and write less boilerplate code. Less code written also means less code to test and maintain.
-				</q>
-                <p class="text-right">developer.android.com</p>
-            </section>
+      <section>
+        <h2>Semicolons are optional</h2>
+        <pre><code class="kotlin" data-trim>
+            println(“Hello World”);
+        </code></pre>
+        <p>is equivalent to</p>
+        <pre><code class="kotlin" data-trim>
+            println(“Hello World”)
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Less verbose</h2>
-                <p>Java</p>
-                <pre><code class="java" data-trim>
-                    public class HelloWorld {
-                        public static void main(String[] args) {
-                            System.out.println(“Hello World!”);
-                        }
-                    }
-				</code></pre>
-                <p>Kotlin</p>
-                <pre><code class="kotlin" data-trim>
-                    fun main() {
-                        println(“Hello World”)
-                    }
-				</code></pre>
-            </section>
+      <section>
+        <h2>Return types</h2>
+        <p><code>Unit</code> return type can be omitted</p>
+        <pre><code class="kotlin" data-trim>
+            fun main(): Unit {
+                println(“Hello World”)
+            }
+        </code></pre>
+        <p>is equivalent to</p>
+        <pre><code class="kotlin" data-trim>
+            fun main() {
+                println(“Hello World”)
+            }
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Semicolons are optional</h2>
-                <pre><code class="kotlin" data-trim>
-                    println(“Hello World”);
-                </code></pre>
-                <p>is equivalent to</p>
-                <pre><code class="kotlin" data-trim>
-                    println(“Hello World”)
-                </code></pre>
-            </section>
+      <section>
+        <h2>Type inference</h2>
+        <pre><code class="kotlin" data-trim>
+            val a: Int = 3
+            val b: Int
+            b = 5
+        </code></pre>
+        <p>is equivalent to</p>
+        <pre><code class="kotlin" data-trim>
+            val a = 3 // type Int gets inferred
+            val b: Int
+            b = 5
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Return types</h2>
-                <p><code>Unit</code> return type can be omitted</p>
-                <pre><code class="kotlin" data-trim>
-                    fun main(): Unit {
-                        println(“Hello World”)
-                    }
-                </code></pre>
-                <p>is equivalent to</p>
-                <pre><code class="kotlin" data-trim>
-                    fun main() {
-                        println(“Hello World”)
-                    }
-                </code></pre>
-            </section>
+      <section>
+        <h2>Visibility Modifiers</h2>
+        <ul>
+          <li><code>private</code></li>
+          <li><code>protected</code></li>
+          <li><code><span class="out-of-scope">internal</span></code></li>
+          <li><code>public</code> (default)</li>
+        </ul>
+        <pre><code class="kotlin" data-trim>
+            private val a = 3
+            val b = 5 // public by default
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Type inference</h2>
-                <pre><code class="kotlin" data-trim>
-                    val a = 3
-                    val b: Int
-                    b = 5
-                </code></pre>
-                <p>is equivalent to</p>
-                <pre><code class="kotlin" data-trim>
-                    val a: Int = 3 // type Int gets inferred
-                    val b: Int
-                    b = 5
-                </code></pre>
-            </section>
+      <section>
+        <h2>Accessing properties</h2>
+        <p>Java</p>
+        <pre><code class="Java" data-trim>
+            String name = somePerson.getName();
+        </code></pre>
+        <p>Kotlin</p>
+        <pre><code class="kotlin" data-trim>
+            val name = somePerson.name
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Visibility Modifiers</h2>
-                <ul>
-                    <li><code>private</code></li>
-                    <li><code>protected</code></li>
-                    <li><code>internal</code></li>
-                    <li><code>public</code> (default)</li>
-                </ul>
-                <pre><code class="kotlin" data-trim>
-                    private val a = 3
-                    val b = 5 // public by default
-                </code></pre>
-            </section>
+      <section>
+        <h2>Assigning properties</h2>
+        <p>Java</p>
+        <pre><code class="Java" data-trim>
+            somePerson.setName("Dennis");
+        </code></pre>
+        <p>Kotlin</p>
+        <pre><code class="kotlin" data-trim>
+            somePerson.name = "Dennis"
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Accessing properties</h2>
-                <p>Java</p>
-                <pre><code class="Java" data-trim>
-                    String name = somePerson.getName();
-                </code></pre>
-                <p>Kotlin</p>
-                <pre><code class="kotlin" data-trim>
-                    val name = somePerson.name
-                </code></pre>
-            </section>
+      <section>
+        <h2>Creating new instances</h2>
+        <p>Java</p>
+        <pre><code class="java" data-trim>
+            Person somePerson = new Person("Dennis");
+        </code></pre>
+        <p>Kotlin (no <code>new</code> keyword)</p>
+        <pre><code class="kotlin" data-trim>
+            val somePerson = Person("Dennis")
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Creating new instances</h2>
-                <p>Java</p>
-                <pre><code class="java" data-trim>
-                        Person somePerson = new Person("Dennis");
-                    </code></pre>
-                <p>Kotlin (no <code>new</code> keyword)</p>
-                <pre><code class="kotlin" data-trim>
-                        val somePerson = Person("Dennis")
-                    </code></pre>
-            </section>
+      <section>
+        <h2>Named arguments</h2>
+        <pre><code class="kotlin" data-trim>
+            class User(val username: String, val password: String)
 
-            <section>
-                <h2>Named arguments</h2>
-                <pre><code class="kotlin" data-trim>
-                    class User(val username: String, val password: String)
+            val admin = User(username = "admin", password = "12345")
+        </code></pre>
+        <p>order doesn't matter</p>
+        <pre><code class="kotlin" data-trim>
+            val user = User(password = "54321", username = "user")
+        </code></pre>
+      </section>
 
-                    val admin = User(username = "admin", password = "12345")
-                </code></pre>
-                <p>order doesn't matter</p>
-                <pre><code class="kotlin" data-trim>
-                    val user = User(password = "54321", username = "user")
-                </code></pre>
-            </section>
+      <section>
+        <h2>Default arguments</h2>
+        <pre><code class="kotlin" data-trim>
+            class User(
+                val username: String,
+                val password: String = "not-so-secure-password"
+            )
 
-            <section>
-                <h2>Default arguments</h2>
-                <pre><code class="kotlin" data-trim>
-                    class User(
-                        val username: String,
-                        val password: String = "not-so-secure-password"
-                    )
+            val admin = User(username = "admin")
+        </code></pre>
+      </section>
 
-                    val admin = User(username = "admin")
-                </code></pre>
-            </section>
+      <section>
+        <h2>Single-expression functions</h2>
+        <pre><code class="kotlin" data-trim>
+            fun theAnswer(): Int {
+                return 42
+            }
+        </code></pre>
+        <p>is equivalent to</p>
+        <pre><code class="kotlin" data-trim>
+            fun theAnswer() = 42
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Single-expression functions</h2>
-                <pre><code class="kotlin" data-trim>
-                    fun theAnswer(): Int {
-                        return 42
-                    }
-                </code></pre>
-                <p>is equivalent to</p>
-                <pre><code class="kotlin" data-trim>
-                    fun theAnswer() = 42
-                </code></pre>
-            </section>
+      <section>
+        <h2><code>var</code> and <code>val</code></h2>
+        <pre><code class="kotlin" data-trim data-noescape>
+            var a = "mutable String"
+            val b = "immutable String"
+            
+            a = "new value"
+            <span class="compiler-error">b = "new value"</span> // compilation error
+        </code></pre>
+      </section>
 
-            <section>
-                <h2><code>var</code> and <code>val</code></h2>
-                <pre><code class="kotlin" data-trim data-noescape>
-					
-					var a = "mutable String"
-					val b = "immutable String"
-					
-					a = "new value"
-					<span class="compiler-error">b = "new value"</span> // compilation error
-					
-				</code></pre>
-            </section>
+      <section>
+        <h2>Null Safety</h2>
+        <q cite="https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">
+          I call it my billion-dollar mistake. It was the invention of the null reference in 1965.
+        </q>
+        <p class="text-right">Tony Hoare</p>
+      </section>
 
-            <section>
-                <h2>Null Safety</h2>
-                <q cite="https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">
-                	I call it my billion-dollar mistake. It was the invention of the null reference in 1965.
-				</q>
-                <p class="text-right">Tony Hoare</p>
-            </section>
+      <section>
+        <h2>Null Safety</h2>
+        <pre><code class="kotlin" data-trim data-noescape>
+            var a: String = "abc"
+            <span class="compiler-error">a = null</span> // compilation error
 
-            <section>
-                <h2>Null Safety</h2>
-                <pre><code class="kotlin" data-trim data-noescape>
-					var a: String = "abc"
-					<span class="compiler-error">a = null</span> // compilation error
+            var b: String? = "abc"
+            b = null // ok
+        </code></pre>
+      </section>
 
-					var b: String? = "abc"
-					b = null // ok
-				</code></pre>
-            </section>
+      <section>
+        <h2>Safe call operator - <code>?.</code></h2>
+        <pre><code class="kotlin" data-trim data-noescape>
+            val a: String = "abc"
+            a.length
 
-            <section>
-                <h2>Safe call operator - <code>?.</code></h2>
-                <pre><code class="kotlin" data-trim data-noescape>
-					val a: String = "abc"
-					a.length
+            val b: String? = "abc"
 
-					val b: String? = "abc"
+            <span class="compiler-error">b.length</span> // compilation error
 
-					<span class="compiler-error">b.length</span> // compilation error
+            b?.length
+        </code></pre>
+      </section>
 
-					b?.length
-				</code></pre>
-            </section>
+      <section>
+        <h2>Elvis operator - <code>?:</code></h2>
+        <p>If the expression to the left of <code>?:</code> is not null, the elvis operator returns it, otherwise it
+          returns the expression to the right.</p>
+        <pre><code class="kotlin" data-trim data-noescape>
+            val b: String? = "abc"
 
-            <section>
-                <h2>Elvis operator - <code>?:</code></h2>
-                <p>If the expression to the left of <code>?:</code> is not null, the elvis operator returns it, otherwise it returns the expression to the right.</p>
-                <pre><code class="kotlin" data-trim data-noescape>
-					val b: String? = "abc"
+            val l = b?.length ?: -1
+        </code></pre>
+      </section>
 
-					val l = b?.length ?: -1
-				</code></pre>
-            </section>
+      <section>
+        <h2>Template Strings</h2>
+        <pre><code class="kotlin" data-trim>
+            val name = "Dennis"
+            println("My name is $name")
+        </code></pre>
+        <pre><code class="shell" data-trim>
+           $ My name is Dennis
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Template Strings</h2>
-                <pre><code class="kotlin" data-trim>
-					val name = "Dennis"
-					println("My name is $name")
-				</code></pre>
-                <pre><code class="shell" data-trim>
-					$ My name is Dennis
-				</code></pre>
-            </section>
+      <section>
+        <h2>Data classes</h2>
+        <ul>
+          <li><code>equals()</code></li>
+          <li><code>hashCode()</code></li>
+          <li><code>toString()</code></li>
+          <li><code>copy()</code></li>
+          <li>Destructuring Declarations</li>
+        </ul>
+      </section>
 
-            <section>
-                <h2>Data classes</h2>
-                <ul>
-                    <li><code>equals()</code></li>
-                    <li><code>hashCode()</code></li>
-                    <li><code>toString()</code></li>
-                    <li><code>copy()</code></li>
-                    <li>Destructuring Declarations</li>
-                </ul>
-            </section>
+      <section>
+        <h2>Data classes</h2>
+        <pre><code class="kotlin" data-trim>
+            data class User(
+                val username: String,
+                val password: String
+            )
+            
+            val admin = User("admin", "12345")
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Data classes</h2>
-                <pre><code class="kotlin" data-trim>
-                    data class User(
-                        val username: String,
-                        val password: String
-                    )
-                    
-                    val admin = User("admin", "12345")
-				</code></pre>
-            </section>
+      <section>
+        <h2>Destructuring Declarations</h2>
+        <pre><code class="kotlin" data-trim>
+            data class User(
+                val username: String,
+                val password: String
+            )
 
-            <section>
-                <h2>Destructuring Declarations</h2>
-                <pre><code class="kotlin" data-trim>
-                    data class User(
-                        val username: String,
-                        val password: String
-                    )
+            val (username, password) = User("admin", "12345")
+        </code></pre>
+      </section>
 
-                    val (username, password) = User("admin", "12345")
-                </code></pre>
-            </section>
+      <section>
+        <h2>Destructuring Declarations</h2>
+        <p>very handy in maps</p>
+        <pre><code class="kotlin" data-trim>
+            for ((key, value) in map) {
+                println("Key: $key, value: $value")
+            }
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Destructuring Declarations</h2>
-                <p>very handy in maps</p>
-                <pre><code class="kotlin" data-trim>
-                    for ((key, value) in map) {
-                        println("Key: $key, value: $value")
-                    }
-				</code></pre>
-            </section>
+      <section>
+        <h2>Smart Casts</h2>
+        <p><code>is</code> check</p>
+        <pre><code class="kotlin" data-trim>
+            if (x is String) {
+                println(x.length) // x is automatically cast to String
+            }
+        </code></pre>
+        <p>negative <code>is</code> check</p>
+        <pre><code class="kotlin" data-trim>
+            if (x !is String) return
+            println(x.length) // x is automatically cast to String
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Smart Casts</h2>
-                <p><code>is</code> check</p>
-                <pre><code class="kotlin" data-trim>
-                    if (x is String) {
-                        println(x.length) // x is automatically cast to String
-                    }
-				</code></pre>
-                <p>negative <code>is</code> check</p>
-                <pre><code class="kotlin" data-trim>
-                    if (x !is String) return
-                    println(x.length) // x is automatically cast to String
-				</code></pre>
-            </section>
+      <section>
+        <h2>Smart Casts</h2>
+        <p><code>when-expressions</code></p>
+        <pre><code class="kotlin" data-trim>
+            when (x) {
+                is Int -> println(x + 1) // x is Int
+                is String -> println(x.length + 1) // x is String
+                is IntArray -> println(x.sum()) // x is IntArray
+            }
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Smart Casts</h2>
-                <p><code>when-expressions</code></p>
-                <pre><code class="kotlin" data-trim>
-                    when (x) {
-                        is Int -> println(x + 1) // x is Int
-                        is String -> println(x.length + 1) // x is String
-                        is IntArray -> println(x.sum()) // x is IntArray
-                    }
-				</code></pre>
-            </section>
+      <section>
+        <h2>Collections</h2>
+        <p>Immutable</p>
+        <pre><code class="kotlin" data-trim>
+            val x = listOf(a, b, c)
+            val y = setOf(a, b, c)
+            val z = mapOf(
+                Pair("a", a),
+                Pair("b", b), 
+                Pair("c", c)
+            )
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Collections</h2>
-                <p>Immutable</p>
-                <pre><code class="kotlin" data-trim>
-                    val x = listOf(a, b, c)
-                    val y = setOf(a, b, c)
-                    val z = mapOf(
-                        Pair("a", a),
-                        Pair("b", b), 
-                        Pair("c", c)
-                    )
-				</code></pre>
-            </section>
+      <section>
+        <h2>Collections</h2>
+        <p>Mutable</p>
+        <pre><code class="kotlin" data-trim>
+            val x = mutableListOf(a, b, c)
+            val y = mutableSetOf(a, b, c)
+            val z = mutableMapOf(
+                Pair("a", a),
+                Pair("b", b), 
+                Pair("c", c)
+            )
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Collections</h2>
-                <p>Mutable</p>
-                <pre><code class="kotlin" data-trim>
-                    val x = mutableListOf(a, b, c)
-                    val y = mutableSetOf(a, b, c)
-                    val z = mutableMapOf(
-                        Pair("a", a),
-                        Pair("b", b), 
-                        Pair("c", c)
-                    )
-				</code></pre>
-            </section>
+      <section>
+        <h2>Ranges</h2>
+        <p>ascending</p>
+        <pre><code class="kotlin" data-trim>
+            for(i in 1..4) {
+                println("Current Value is $i")
+            }
+        </code></pre>
+        <p>descending</p>
+        <pre><code class="kotlin" data-trim>
+            for(i in 4 downTo 1) {
+                println("Current Value is $i")
+            }
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Ranges</h2>
-                <p>ascending</p>
-                <pre><code class="kotlin" data-trim>
-                    for(i in 1..4) {
-                        println("Current Value is $i")
-                    }
-                </code></pre>
-                <p>descending</p>
-                <pre><code class="kotlin" data-trim>
-                    for(i in 4 downTo 1) {
-                        println("Current Value is $i")
-                    }
-				</code></pre>
-            </section>
+      <section>
+        <h2>Ranges with step</h2>
+        <p>ascending</p>
+        <pre><code class="kotlin" data-trim>
+            for(i in 1..4 step 2) {
+                println("Current Value is $i")
+            }
+        </code></pre>
+        <p>descending</p>
+        <pre><code class="kotlin" data-trim>
+            for(i in 4 downTo 1 step 2) {
+                println("Current Value is $i")
+            }
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Ranges with step</h2>
-                <p>ascending</p>
-                <pre><code class="kotlin" data-trim>
-                    for(i in 1..4 step 2) {
-                        println("Current Value is $i")
-                    }
-                </code></pre>
-                <p>descending</p>
-                <pre><code class="kotlin" data-trim>
-                    for(i in 4 downTo 1 step 2) {
-                        println("Current Value is $i")
-                    }
-				</code></pre>
-            </section>
+      <section>
+        <h2>Extension Functions</h2>
+        <q cite="https://kotlinlang.org/docs/reference/extensions.html">
+          Provide the ability to extend a class with new functionality without having to inherit from the class
+          or use any type of design pattern such as Decorator.</q>
+        <p class="text-right">kotlinlang.org</p>
+      </section>
 
-            <section>
-                <h2>Extension Functions</h2>
-                <q cite="https://kotlinlang.org/docs/reference/extensions.html">
-					Provide the ability to extend a class with new functionality without having to inherit from the class
-					or use any type of design pattern such as Decorator.</q>
-                <p class="text-right">kotlinlang.org</p>
-            </section>
+      <section>
+        <h2>Util classes in Java</h2>
+        <pre><code class="java" data-trim>
+            public class CollectionUtil {
+                public static void swap(
+                    List&lt;Integer&gt; list,
+                    int index1,
+                    int index2
+                ) {
+                    Integer tmp = list.get(index1);
+                    list.set(index1, list.get(index2));
+                    list.set(index2, tmp);
+                }
+            }
+        </code></pre>
+        <pre><code class="java" data-trim>
+            List&lt;Integer&gt; list = Arrays.asList(1,2,3);
+            CollectionUtil.swap(list, 0, 2);
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Util classes in Java</h2>
-                <pre><code class="java" data-trim>
-                    public class CollectionUtil {
-                        public static void swap(
-                            List&lt;Integer&gt; list,
-                            int index1,
-                            int index2
-                        ) {
-                            Integer tmp = list.get(index1);
-                            list.set(index1, list.get(index2));
-                            list.set(index2, tmp);
-                        }
-                    }
-                </code></pre>
-                <pre><code class="java" data-trim>
-                    List&lt;Integer&gt; list = Arrays.asList(1,2,3);
-                    CollectionUtil.swap(list, 0, 2);
-				</code></pre>
-            </section>
+      <section>
+        <h2>Extension Functions</h2>
+        <p>Replacement of Java Util function</p>
+        <pre><code class="kotlin" data-trim>
+            fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
+              val tmp = this[index1]
+              this[index1] = this[index2]
+              this[index2] = tmp
+            }
+        </code></pre>
+        <pre><code class="java" data-trim>
+            val list = mutableListOf(1, 2, 3)
+            list.swap(0, 2)
+        </code></pre>
+      </section>
 
-            <section>
-                <h2>Extension Functions</h2>
-                <p>Replacement of Java Util function</p>
-                <pre><code class="kotlin" data-trim>
-                    fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
-                        val tmp = this[index1]
-                        this[index1] = this[index2]
-                        this[index2] = tmp
-                    }
-                </code></pre>
-                <pre><code class="java" data-trim>
-                    val list = mutableListOf(1, 2, 3)
-                    list.swap(0, 2)
-				</code></pre>
-            </section>
+      <section>
+        <h2>More awesome features</h2>
+        <ul>
+          <li>Coroutines</li>
+          <li>Kotlin Native</li>
+          <li>Scope functions</li>
+          <li>Infix notation</li>
+          <li>Ability to create DSLs</li>
+          <li>Contracts</li>
+          <li>...</li>
+        </ul>
+      </section>
 
-            <section>
-                <h2>More awesome features</h2>
-                <ul>
-                    <li>Coroutines</li>
-                    <li>Kotlin Native</li>
-                    <li>Scope functions</li>
-                    <li>Infix notation</li>
-                    <li>Ability to create DSLs</li>
-                    <li>Contracts</li>
-                    <li>...</li>
-                </ul>
-            </section>
+      <section>
+        <h2>Further information</h2>
+        <ul>
+          <li><a href="https://kotlinlang.org/docs/reference/">https://kotlinlang.org/docs/reference/</a></li>
+          <li><a href="https://play.kotlinlang.org/koans/overview">https://play.kotlinlang.org/koans/overview</a></li>
+          <li><a href="https://kotlinlang.org/docs/books.html">https://kotlinlang.org/docs/books.html</a></li>
+          <li><a href="https://medium.com/@elizarov">Medium - Roman Elizarov</a></li>
+          <li><a href="https://www.youtube.com/playlist?list=PLQ176FUIyIUbVvFMqDc2jhxS-t562uytr">YouTube - KotlinConf
+              2018</a></li>
+        </ul>
+      </section>
 
-            <section>
-                <h2>Further information</h2>
-                <ul>
-                    <li><a href="https://kotlinlang.org/docs/reference/">https://kotlinlang.org/docs/reference/</a></li>
-                    <li><a href="https://play.kotlinlang.org/koans/overview">https://play.kotlinlang.org/koans/overview</a></li>
-                    <li><a href="https://kotlinlang.org/docs/books.html">https://kotlinlang.org/docs/books.html</a></li>
-                    <li><a href="https://medium.com/@elizarov">Medium - Roman Elizarov</a></li>
-                    <li><a href="https://www.youtube.com/playlist?list=PLQ176FUIyIUbVvFMqDc2jhxS-t562uytr">YouTube - KotlinConf 2018</a></li>
-                </ul>
-            </section>
-
-            <section>
-                <h2>Thank you!</h2>
-                <p> Questions?</p>
-            </section>
-
-            <section>
-                <div>Follow me on <a href="https://github.com/d3ns0n">https://github.com/d3ns0n</a></div>
-            </section>
-
-        </div>
-
-        <div class="author">
-            Dennis Lotz
-        </div>
-
+      <section>
+        <h2>Thank you!</h2>
+        <p> Questions?</p>
+      </section>
     </div>
 
-    <script src="js/reveal.js"></script>
+    <div class="author">
+      Dennis Lotz
+    </div>
 
-    <script>
-        Reveal.initialize({
-            controls: false,
-            progress: true,
-            center: true,
-            hash: true,
+  </div>
 
-            transition: 'slide',
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      controls: false,
 
-            dependencies: [{
-                src: 'plugin/highlight/highlight.js',
-                async: true
-            }, {
-                src: 'plugin/search/search.js',
-                async: true
-            }, {
-                src: 'plugin/zoom-js/zoom.js',
-                async: true
-            }, {
-                src: 'plugin/notes/notes.js',
-                async: true
-            }]
-        });
-    </script>
-
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
 </body>
 
 </html>

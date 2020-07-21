@@ -216,6 +216,10 @@ body {
     text-decoration-color: #BC3F3C;
 }
 
+.reveal .out-of-scope {
+    color: #777;
+}
+
 .reveal table {
     margin: auto;
     border-collapse: collapse;
