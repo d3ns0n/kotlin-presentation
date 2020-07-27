@@ -50,13 +50,10 @@
       <section>
         <h2>Java Interoperability</h2>
         <pre><code class="kotlin" data-trim>
-            import java.util.Calendar
-            
-            fun calendarDemo() {
-                val calendar = Calendar.getInstance()
-                if (calendar.firstDayOfWeek == Calendar.SUNDAY) {
-                    calendar.firstDayOfWeek = Calendar.MONDAY
-                }
+            import java.time.LocalDate
+
+            fun getDate7DaysAgo(): LocalDate {
+                return LocalDate.now().minusDays(7)
             }
         </code></pre>
       </section>
@@ -145,6 +142,17 @@
       </section>
 
       <section>
+        <h2><code>var</code> and <code>val</code></h2>
+        <pre><code class="kotlin" data-trim data-noescape>
+            var a = "mutable String"
+            val b = "immutable String"
+            
+            a = "new value"
+            <span class="compiler-error">b = "new value"</span> // compilation error
+        </code></pre>
+      </section>
+
+      <section>
         <h2>Accessing properties</h2>
         <p>Java</p>
         <pre><code class="Java" data-trim>
@@ -219,17 +227,6 @@
       </section>
 
       <section>
-        <h2><code>var</code> and <code>val</code></h2>
-        <pre><code class="kotlin" data-trim data-noescape>
-            var a = "mutable String"
-            val b = "immutable String"
-            
-            a = "new value"
-            <span class="compiler-error">b = "new value"</span> // compilation error
-        </code></pre>
-      </section>
-
-      <section>
         <h2>Null Safety</h2>
         <q cite="https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">
           I call it my billion-dollar mistake. It was the invention of the null reference in 1965.
@@ -252,8 +249,10 @@
         <h2>Safe call operator - <code>?.</code></h2>
         <pre><code class="kotlin" data-trim data-noescape>
             val a: String = "abc"
+
             a.length
 
+            
             val b: String? = "abc"
 
             <span class="compiler-error">b.length</span> // compilation error
@@ -428,16 +427,16 @@
         <h2>Util classes in Java</h2>
         <pre><code class="java" data-trim>
             public class CollectionUtil {
-                public static void swap(
-                    List&lt;Integer&gt; list,
+                public static &lt;T&gt; void swap(
+                    List&lt;T&gt; list,
                     int index1,
                     int index2
                 ) {
-                    Integer tmp = list.get(index1);
+                    T tmp = list.get(index1);
                     list.set(index1, list.get(index2));
                     list.set(index2, tmp);
                 }
-            }
+          }
         </code></pre>
         <pre><code class="java" data-trim>
             List&lt;Integer&gt; list = Arrays.asList(1,2,3);
@@ -450,9 +449,9 @@
         <p>Replacement of Java Util function</p>
         <pre><code class="kotlin" data-trim>
             fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
-              val tmp = this[index1]
-              this[index1] = this[index2]
-              this[index2] = tmp
+                val tmp = this[index1]
+                this[index1] = this[index2]
+                this[index2] = tmp
             }
         </code></pre>
         <pre><code class="java" data-trim>
