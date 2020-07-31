@@ -450,6 +450,7 @@
 
       <section>
         <h2>Java Interoperability</h2>
+        <p>Calling Java from Kotlin</p>
         <pre><code class="kotlin" data-trim>
             import java.time.LocalDate
 
@@ -457,6 +458,37 @@
                 return LocalDate.now().minusDays(7)
             }
         </code></pre>
+      </section>
+
+      <section>
+        <h2>Java Interoperability</h2>
+        <p>Calling Kotlin from Java</p>
+        <pre><code class="kotlin" data-trim>
+            data class Person(var name: String)
+        </code></pre>
+        <pre><code class="java" data-trim>
+            import util.Person;
+
+            public class JavaInterop {
+                public static void main(String[] args) {
+                    Person dennis = new Person("Dennis");
+                    String name = dennis.getName();
+                }
+            }
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>Java Interoperability</h2>
+        <p>Control JVM byte code generation via annotations</p>
+        <ul>
+          <li>@JvmName</li>
+          <li>@JvmMultifileClass</li>
+          <li>@JvmField</li>
+          <li>@JvmStatic</li>
+          <li>@JvmDefault</li>
+          <li>...</li>
+        </ul>
       </section>
 
       <section>
